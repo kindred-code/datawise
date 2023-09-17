@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "mpolitakis.datawise.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'mpolitakis.datawise.jwtExpirationMs'"
+  },
+  {
+    "name": "mpolitakis.datawise.jwtRefreshExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'mpolitakis.datawise.jwtRefreshExpirationMs'"
+  },
+  {
+    "name": "mpolitakis.datawise.jwtRefreshExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'mpolitakis.datawise.jwtRefreshExpirationMs'"
+  }
+]}{
+    "name": "mpolitakis.datawise.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'mpolitakis.datawise.jwtExpirationMs'"
+  }
+]}{
+    "name": "mpolitakis.datawise.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'mpolitakis.datawise.jwtSecret'"
+  }
+]}{
+    "name": "mpolitakis.datawise.jwtCookieName",
+    "type": "java.lang.String",
+    "description": "A description for 'mpolitakis.datawise.jwtCookieName'"
+  }
+]}
