@@ -8,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,13 +16,13 @@ import com.mpolitakis.datawise.user.UserRepository;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
+  public static final String AUTHORITIES_CLAIM_NAME = "roles";
 
   private final UserRepository repository;
 
   @Bean
   public UserDetailsService userDetailsService() {
-    return username -> repository.findByUsername(username)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    return username -> repository.findByUsername(username);
   }
 
   @Bean
