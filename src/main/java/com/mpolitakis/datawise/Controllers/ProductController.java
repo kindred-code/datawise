@@ -26,23 +26,26 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.mpolitakis.datawise.Models.Product;
 import com.mpolitakis.datawise.Sec.services.ProductService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
-@RequestMapping("/products")
+@RequestMapping("api/v1/products")
+@RequiredArgsConstructor
 public class ProductController {
 
 	public static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-	@Autowired
-	private ProductService productService;
+	
+	private final ProductService productService;
 
-    @PreAuthorize("hasRole('User')  or hasRole('Admin')")
-	@GetMapping()
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@GetMapping("/all")
 	public ResponseEntity<List<Product>> getAllProducts() {
 		List<Product> list = productService.getAllProducts();
 		return ResponseEntity.ok(list);
-		// return new ResponseEntity<List<Product>>(list, HttpStatus.OK);
+
 	}
-    @PreAuthorize("hasRole('User')  or hasRole('Admin')")
+    @PreAuthorize("hasAuthority('admin:read') or hasAuthority('client:read')")
 	@PostMapping("/product")
 	public ResponseEntity<?> findProductByName(@RequestParam("product") String name) throws ProductException {
 		Product product = productService.findProductByName(name);
@@ -53,7 +56,7 @@ public class ProductController {
 		return ResponseEntity.ok(product);
 	}
 
-    @PreAuthorize("hasRole('User')  or hasRole('Admin')")
+    @PreAuthorize("hasAuthority('admin:read') or hasAuthority('client:read')")
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findProductById(@PathVariable Long id) throws ProductException {
 		Optional<Product> product = productService.findProductById(id);
@@ -64,13 +67,10 @@ public class ProductController {
 		return ResponseEntity.ok(product);
 	}
 
-    @PreAuthorize("hasRole('User')  or hasRole('Admin')")
-	@PostMapping()
+    @PreAuthorize("hasAuthority('admin:create') or hasAuthority('client:create')")
+	@PostMapping("/create")
 	public ResponseEntity<?> addProduct(@Validated @RequestBody Product product, Errors errors) throws ProductException {
 
-		if (errors.hasErrors()) {
-			throw new ProductException(errors.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
-		}
 
 		boolean productExists = productService.findProductByName(product.getName()) != null;
 		if (productExists) {
@@ -86,8 +86,8 @@ public class ProductController {
 
 		return ResponseEntity.created(location).build();
 	}
-    @PreAuthorize("hasRole('Admin')")
-	@PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:update')")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateProduct(@PathVariable Long id, @Validated @RequestBody Product product, Errors errors)
 			throws ProductException {
 		if (errors.hasErrors()) {
@@ -103,7 +103,7 @@ public class ProductController {
 
 		return ResponseEntity.ok(product);
 	}
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasAuthority('admin:delete')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long id) throws ProductException {
 		Optional<Product> currentProduct = productService.findProductById(id);

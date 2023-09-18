@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.mpolitakis.datawise.Models.RefreshToken;
-import com.mpolitakis.datawise.Models.User;
+import com.mpolitakis.datawise.user.User;
 
 
 @Repository

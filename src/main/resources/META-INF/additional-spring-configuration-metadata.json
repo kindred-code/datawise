@@ -1,32 +1,12 @@
 {"properties": [
   {
-    "name": "mpolitakis.datawise.jwtExpirationMs",
+    "name": "expiration",
     "type": "java.lang.String",
-    "description": "A description for 'mpolitakis.datawise.jwtExpirationMs'"
+    "description": "A description for 'expiration'"
   },
   {
-    "name": "mpolitakis.datawise.jwtRefreshExpirationMs",
+    "name": "spring.application.security.jwt.refresh-token.expiration",
     "type": "java.lang.String",
-    "description": "A description for 'mpolitakis.datawise.jwtRefreshExpirationMs'"
-  },
-  {
-    "name": "mpolitakis.datawise.jwtRefreshExpirationMs",
-    "type": "java.lang.String",
-    "description": "A description for 'mpolitakis.datawise.jwtRefreshExpirationMs'"
-  }
-]}{
-    "name": "mpolitakis.datawise.jwtExpirationMs",
-    "type": "java.lang.String",
-    "description": "A description for 'mpolitakis.datawise.jwtExpirationMs'"
-  }
-]}{
-    "name": "mpolitakis.datawise.jwtSecret",
-    "type": "java.lang.String",
-    "description": "A description for 'mpolitakis.datawise.jwtSecret'"
-  }
-]}{
-    "name": "mpolitakis.datawise.jwtCookieName",
-    "type": "java.lang.String",
-    "description": "A description for 'mpolitakis.datawise.jwtCookieName'"
+    "description": "A description for 'spring.application.security.jwt.refresh-token.expiration'"
   }
 ]}

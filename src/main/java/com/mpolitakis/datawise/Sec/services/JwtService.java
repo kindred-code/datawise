@@ -13,16 +13,16 @@ import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class JwtService {
 
-  @Value("${mpolitakis.datawise.jwtSecret}")
+  @Value("${spring.application.security.jwt.secret}")
   private String secretKey;
-  @Value("${mpolitakis.datawise.jwtExpirationMs}")
+  @Value("${spring.application.security.jwt.secret.expiration}")
   private long jwtExpiration;
-  @Value("${mpolitakis.datawise.jwtRefreshExpirationMs}")
+  @Value("${spring.application.security.jwt.refresh-token.expiration}")
   private long refreshExpiration;
 
   public String extractUsername(String token) {
