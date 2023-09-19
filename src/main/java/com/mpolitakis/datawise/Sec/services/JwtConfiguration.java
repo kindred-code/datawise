@@ -15,7 +15,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +23,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
@@ -98,20 +100,37 @@ public class JwtConfiguration {
 		return NimbusJwtDecoder.withPublicKey(rsaPublicKey).build();
 	}
 
-	public String createJwtForClaims(String subject, Map<String, String> claims) throws IllegalArgumentException, JWTCreationException, IOException {
+	@Bean
+	public JwtAuthenticationConverter jwtAuthenticationConverter() {
+			final JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+			// here choose a claim name where you stored authorities on login (defaults to "scope" and "scp" if not used)
+			grantedAuthoritiesConverter.setAuthoritiesClaimName("Authorities");
+			// here choose a scope prefix (defaults to "SCOPE_" if not used)
+			grantedAuthoritiesConverter.setAuthorityPrefix("");
+
+			final JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+			jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+			return jwtAuthenticationConverter;
+	}
+
+	public String createJwtForClaims(String subject, Set<String> claims) throws IllegalArgumentException, JWTCreationException, IOException {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(Instant.now().toEpochMilli());
 		calendar.add(Calendar.DATE, 1);
 		
 		JWTCreator.Builder jwtBuilder = JWT.create().withSubject(subject);
+		String[] arrayClaims = new String[claims.size()];
+		int index = 0;
+        for (String claim : claims)
+            arrayClaims[index++] = claim;
 		
 		
-		claims.forEach(jwtBuilder::withClaim);
 		
 		
 		return jwtBuilder
 				.withNotBefore(new Date())
 				.withExpiresAt(calendar.getTime())
+				.withArrayClaim("Authorities", arrayClaims)
 				.sign(Algorithm.RSA256(jwtValidationKey(keyStore()), jwtSigningKey(keyStore())));
 	}
 }

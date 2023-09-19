@@ -1,6 +1,8 @@
 package com.mpolitakis.datawise.auth;
 
-import com.mpolitakis.datawise.user.Role;
+
+
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +19,5 @@ public class RegisterRequest {
   private String username;
   private String email;
   private String password;
-  private Role role;
+  private Set<String> authorities;
 }

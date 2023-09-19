@@ -11,9 +11,9 @@ import jakarta.persistence.Table;
 @Table(name = "products")
 public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
      
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -21,6 +21,18 @@ public class Product {
     private String name;
      
     private float price;
+
+    public Product() {
+    }
+
+    public Product(Long id) {
+        this.id = id;
+    }
+
+    public Product(String name, float price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public String getName() {
         return name;

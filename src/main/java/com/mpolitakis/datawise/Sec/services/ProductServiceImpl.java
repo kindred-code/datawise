@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.mpolitakis.datawise.Models.Product;
@@ -48,8 +47,11 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public void updateProduct(Long id, Product product) {
-		product.setId(id);
-		productRepository.save(product);
+		var productOld =findProductById(id);
+		productOld.get().setName(product.getName());
+		productOld.get().setPrice(product.getPrice());
+	
+		productRepository.save(productOld.get());
 	}
 	
 	@Override

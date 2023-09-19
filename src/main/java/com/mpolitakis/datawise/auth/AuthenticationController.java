@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
-
 import lombok.RequiredArgsConstructor;
 
 @CrossOrigin(origins = {"${spring.application.cors.origin}"})
@@ -19,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationController {
 
   private final AuthenticationService service;
-
+  
 
   @PostMapping("/register")
   public ResponseEntity<RegisterRequest> register(
@@ -31,6 +30,8 @@ public class AuthenticationController {
   public ResponseEntity<AuthenticationResponse> authenticate(
       @RequestBody AuthenticationRequest request
   ) throws IllegalArgumentException, JWTCreationException, IOException {
+   
+    
     return ResponseEntity.ok(service.authenticate(request));
   }
 

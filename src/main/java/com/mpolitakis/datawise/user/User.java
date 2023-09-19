@@ -1,13 +1,14 @@
 package com.mpolitakis.datawise.user;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -15,14 +16,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.mpolitakis.datawise.Models.Authority;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_user")
+@Table(name = "users")
 public class User implements UserDetails {
 
   @Id
@@ -31,14 +35,21 @@ public class User implements UserDetails {
   private String username;
   private String email;
   private String password;
+ 
 
-  @Enumerated(EnumType.STRING)
-  private Role role;
-
-
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER)
+  private final List<Authority> authorities = new ArrayList<>();;
+    
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return role.getAuthorities();
+
+      List<GrantedAuthority> listRole = new ArrayList<GrantedAuthority>();
+      
+    for (Authority role : authorities) {
+      listRole.add(new SimpleGrantedAuthority(role.getName()));
+    }
+        System.out.println(listRole);
+        return listRole;
   }
 
   @Override

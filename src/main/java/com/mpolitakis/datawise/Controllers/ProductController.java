@@ -1,12 +1,10 @@
 package com.mpolitakis.datawise.Controllers;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.mpolitakis.datawise.Models.Product;
 import com.mpolitakis.datawise.Sec.services.ProductService;
 
@@ -38,16 +34,16 @@ public class ProductController {
 	
 	private final ProductService productService;
 
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENT')")
 	@GetMapping("/all")
 	public ResponseEntity<List<Product>> getAllProducts() {
 		List<Product> list = productService.getAllProducts();
 		return ResponseEntity.ok(list);
 
 	}
-    @PreAuthorize("hasAuthority('admin:read') or hasAuthority('client:read')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENT')")
 	@PostMapping("/product")
-	public ResponseEntity<?> findProductByName(@RequestParam("product") String name) throws ProductException {
+	public ResponseEntity<Product> findProductByName(@RequestParam("product") String name) throws ProductException {
 		Product product = productService.findProductByName(name);
 		if (product == null) {
 			logger.error("Product with name {} not found.", name);
@@ -56,9 +52,9 @@ public class ProductController {
 		return ResponseEntity.ok(product);
 	}
 
-    @PreAuthorize("hasAuthority('admin:read') or hasAuthority('client:read')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENT')")
 	@GetMapping("/{id}")
-	public ResponseEntity<?> findProductById(@PathVariable Long id) throws ProductException {
+	public ResponseEntity<Optional<Product>> findProductById(@PathVariable Long id) throws ProductException {
 		Optional<Product> product = productService.findProductById(id);
 		if (product == null) {
 			logger.error("Product with id {} not found.", id);
@@ -67,9 +63,9 @@ public class ProductController {
 		return ResponseEntity.ok(product);
 	}
 
-    @PreAuthorize("hasAuthority('admin:create') or hasAuthority('client:create')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENT')")
 	@PostMapping("/create")
-	public ResponseEntity<?> addProduct(@Validated @RequestBody Product product, Errors errors) throws ProductException {
+	public ResponseEntity<Product> addProduct(@Validated @RequestBody Product product, Errors errors) throws ProductException {
 
 
 		boolean productExists = productService.findProductByName(product.getName()) != null;
@@ -81,12 +77,10 @@ public class ProductController {
 		}
 
 		productService.addProduct(product);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(product.getId())
-				.toUri();
-
-		return ResponseEntity.created(location).build();
+		
+		return ResponseEntity.ok(product);
 	}
-    @PreAuthorize("hasAuthority('admin:update')")
+    @PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateProduct(@PathVariable Long id, @Validated @RequestBody Product product, Errors errors)
 			throws ProductException {
@@ -101,10 +95,10 @@ public class ProductController {
 		}
 		productService.updateProduct(id, product);
 
-		return ResponseEntity.ok(product);
+		return ResponseEntity.ok("The product has been updated");
 	}
-    @PreAuthorize("hasAuthority('admin:delete')")
-	@DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long id) throws ProductException {
 		Optional<Product> currentProduct = productService.findProductById(id);
 		if (currentProduct == null) {

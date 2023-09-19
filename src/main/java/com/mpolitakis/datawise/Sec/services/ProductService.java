@@ -9,6 +9,7 @@ import com.mpolitakis.datawise.Models.Product;
 
 public interface ProductService {
 
+	
 	List<Product> getAllProducts();
 
 	Optional<Product> findProductById(Long id);
