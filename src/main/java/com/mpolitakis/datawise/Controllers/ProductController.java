@@ -43,7 +43,7 @@ public class ProductController {
 	}
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENT')")
 	@PostMapping("/product")
-	public ResponseEntity<Product> findProductByName(@RequestParam("product") String name) throws ProductException {
+	public ResponseEntity<Product> findProductByName(String name) throws ProductException {
 		Product product = productService.findProductByName(name);
 		if (product == null) {
 			logger.error("Product with name {} not found.", name);
