@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.user;
+package com.mpolitakis.api.user;
 
 
 import jakarta.persistence.CascadeType;
@@ -19,7 +19,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.mpolitakis.datawise.Models.Authority;
+import com.mpolitakis.api.Models.Authority;
 
 @Data
 @Builder

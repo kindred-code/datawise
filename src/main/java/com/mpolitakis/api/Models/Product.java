@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.Models;
+package com.mpolitakis.api.Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

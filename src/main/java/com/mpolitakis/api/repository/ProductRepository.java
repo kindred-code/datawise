@@ -1,11 +1,11 @@
-package com.mpolitakis.datawise.repository;
+package com.mpolitakis.api.repository;
 
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mpolitakis.datawise.Models.Product;
+import com.mpolitakis.api.Models.Product;
 
 
 

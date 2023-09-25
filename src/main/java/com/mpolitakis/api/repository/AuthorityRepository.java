@@ -1,8 +1,8 @@
-package com.mpolitakis.datawise.repository;
+package com.mpolitakis.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.mpolitakis.datawise.Models.Authority;
+import com.mpolitakis.api.Models.Authority;
 
 
 

@@ -9,10 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 
-import com.mpolitakis.datawise.Controllers.ProductController;
-import com.mpolitakis.datawise.Controllers.ProductException;
-import com.mpolitakis.datawise.Models.Product;
-import com.mpolitakis.datawise.Sec.services.ProductService;
+import com.mpolitakis.api.Controllers.ProductController;
+import com.mpolitakis.api.Controllers.ProductException;
+import com.mpolitakis.api.Models.Product;
+import com.mpolitakis.api.Sec.services.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;

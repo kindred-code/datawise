@@ -1,6 +1,6 @@
-package com.mpolitakis.datawise.Models;
+package com.mpolitakis.api.Models;
 
-import com.mpolitakis.datawise.user.User;
+import com.mpolitakis.api.user.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

@@ -10,11 +10,11 @@ import org.springframework.http.ResponseEntity;
 import java.io.IOException;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.mpolitakis.datawise.auth.AuthenticationController;
-import com.mpolitakis.datawise.auth.AuthenticationRequest;
-import com.mpolitakis.datawise.auth.AuthenticationResponse;
-import com.mpolitakis.datawise.auth.AuthenticationService;
-import com.mpolitakis.datawise.auth.RegisterRequest;
+import com.mpolitakis.api.auth.AuthenticationController;
+import com.mpolitakis.api.auth.AuthenticationRequest;
+import com.mpolitakis.api.auth.AuthenticationResponse;
+import com.mpolitakis.api.auth.AuthenticationService;
+import com.mpolitakis.api.auth.RegisterRequest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

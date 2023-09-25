@@ -1,12 +1,12 @@
-package com.mpolitakis.datawise.auth;
+package com.mpolitakis.api.auth;
 
 
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.mpolitakis.datawise.Models.Authority;
-import com.mpolitakis.datawise.Sec.services.JwtConfiguration;
-import com.mpolitakis.datawise.repository.AuthorityRepository;
-import com.mpolitakis.datawise.user.User;
-import com.mpolitakis.datawise.user.UserRepository;
+import com.mpolitakis.api.Models.Authority;
+import com.mpolitakis.api.Sec.services.JwtConfiguration;
+import com.mpolitakis.api.repository.AuthorityRepository;
+import com.mpolitakis.api.user.User;
+import com.mpolitakis.api.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

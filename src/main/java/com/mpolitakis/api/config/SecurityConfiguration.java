@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.config;
+package com.mpolitakis.api.config;
 
 import lombok.RequiredArgsConstructor;
 
@@ -11,7 +11,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import com.mpolitakis.datawise.Sec.services.JwtConfiguration;
+
+import com.mpolitakis.api.Sec.services.JwtConfiguration;
 @Configuration
 @EnableWebSecurity(debug = true)
 @RequiredArgsConstructor

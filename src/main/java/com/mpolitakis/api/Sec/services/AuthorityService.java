@@ -1,10 +1,10 @@
-package com.mpolitakis.datawise.Sec.services;
+package com.mpolitakis.api.Sec.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mpolitakis.datawise.Models.Authority;
-import com.mpolitakis.datawise.repository.AuthorityRepository;
+import com.mpolitakis.api.Models.Authority;
+import com.mpolitakis.api.repository.AuthorityRepository;
 
 @Service
 public class AuthorityService {

@@ -1,13 +1,13 @@
-package com.mpolitakis.datawise;
+package com.mpolitakis.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DatawiseApplication {
+public class ApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DatawiseApplication.class, args);
+		SpringApplication.run(ApiApplication.class, args);
 	}
 
 }

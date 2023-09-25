@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.config;
+package com.mpolitakis.api.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.mpolitakis.datawise.user.UserRepository;
+import com.mpolitakis.api.user.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor

@@ -1,9 +1,9 @@
-package com.mpolitakis.datawise.Sec.services;
+package com.mpolitakis.api.Sec.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.mpolitakis.datawise.Models.Product;
+import com.mpolitakis.api.Models.Product;
 
 
 

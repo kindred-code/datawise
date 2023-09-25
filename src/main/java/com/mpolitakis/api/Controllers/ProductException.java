@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.Controllers;
+package com.mpolitakis.api.Controllers;
 
 import org.springframework.http.HttpStatus;
 

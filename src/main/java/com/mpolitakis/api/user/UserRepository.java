@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.user;
+package com.mpolitakis.api.user;
 
 
 

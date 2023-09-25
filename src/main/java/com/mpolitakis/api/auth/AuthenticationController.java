@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.auth;
+package com.mpolitakis.api.auth;
 import java.io.IOException;
 
 import org.springframework.http.ResponseEntity;

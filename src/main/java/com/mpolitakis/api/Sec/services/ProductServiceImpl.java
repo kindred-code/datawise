@@ -1,4 +1,4 @@
-package com.mpolitakis.datawise.Sec.services;
+package com.mpolitakis.api.Sec.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mpolitakis.datawise.Models.Product;
-import com.mpolitakis.datawise.repository.ProductRepository;
+import com.mpolitakis.api.Models.Product;
+import com.mpolitakis.api.repository.ProductRepository;
 
 
 
